@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="OrbitCal先行モニター募集ページ。星のサイクルと毎日の動き方をつなぐ14日間の先行体験にお申し込みいただけます。" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:title" content="OrbitCal 先行モニター | AlcheaMindOrbit × Neuro Astrology" />
+  <meta property="og:description" content="星のサイクルを、毎日の動き方に変換する。OrbitCal先行モニター募集ページです。" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="OrbitCal 先行モニター | AlcheaMindOrbit × Neuro Astrology" />
+  <meta name="twitter:description" content="星のサイクルを、毎日の動き方に変換する。OrbitCal先行モニター募集ページです。" />
+  <title>OrbitCal 先行モニター | AlcheaMindOrbit × Neuro Astrology</title>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --ink:    #06030e;
+      --violet: #130628;
+      --plum:   #1a0b24;
+      --wine:   #24102f;
+      --gold:   #d4a853;
+      --rose:   #d46aad;
+      --silver: #b0b8cc;
+      --white:  #f5f3f8;
+      --accent: #8a6fb5;
+      --text-muted: rgba(222,216,232,0.9);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background:
+        radial-gradient(circle at top, rgba(126,38,120,0.26), transparent 42%),
+        linear-gradient(180deg, #22102a 0%, #180c22 42%, #120816 100%);
+      color: var(--white);
+      font-family: 'Hiragino Mincho ProN','Yu Mincho','YuMincho',Georgia,serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content:'';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 62% 46% at 22% 34%, rgba(107,18,170,0.20) 0%, rgba(107,18,170,0) 68%),
+        radial-gradient(ellipse 54% 40% at 56% 20%, rgba(192,32,138,0.18) 0%, rgba(192,32,138,0) 66%),
+        radial-gradient(ellipse 42% 32% at 72% 56%, rgba(160,16,138,0.14) 0%, rgba(160,16,138,0) 70%),
+        radial-gradient(ellipse 38% 28% at 14% 66%, rgba(58,16,176,0.14) 0%, rgba(58,16,176,0) 70%);
+      opacity: 0.72;
+    }
+
+    /* ─── Nebula BG ─── */
+    #nebula {
+      position: fixed; top:0; left:0; width:100%; height:100%;
+      pointer-events: none; z-index:0;
+      opacity: 0.56;
+    }
+
+    /* ─── Sticky Nav ─── */
+    nav.topnav {
+      position: fixed; top:0; left:0; width:100%;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 5vw;
+      background: rgba(6,3,14,0.75);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212,106,173,0.12);
+      transition: background 0.3s;
+    }
+    .nav-brand {
+      font-family: 'Helvetica Neue',Arial,sans-serif;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Helvetica Neue',Arial,sans-serif;
+      font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--silver); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    /* ─── Progress bar ─── */
+    #pbar {
+      position: fixed; top:0; left:0; height:2px;
+      background: linear-gradient(90deg,var(--gold),var(--rose),var(--accent));
+      z-index:200; width:0%; transition: width 0.1s;
+    }
+
+    /* ─── Sections ─── */
+    section {
+      position: relative; z-index: 1;
+      padding: 120px 5vw 100px;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    .container--narrow { max-width: 640px; margin: 0 auto; }
+
+    /* ─── Reveal ─── */
+    .r { opacity:0; transform:translateY(24px);
+      transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
+    .r.v { opacity:1; transform:translateY(0); }
+    .d1 { transition-delay:.12s; } .d2 { transition-delay:.26s; }
+    .d3 { transition-delay:.40s; } .d4 { transition-delay:.55s; }
+    .d5 { transition-delay:.70s; } .d6 { transition-delay:.88s; }
+
+    /* ─── Typography ─── */
+    .eyebrow {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.6rem; letter-spacing:.26em; text-transform:uppercase;
+      color:var(--rose); margin-bottom:1.2rem;
+    }
+    .rule {
+      width:1px; height:52px;
+      background:linear-gradient(180deg,transparent,var(--rose),transparent);
+      margin:0 auto 2rem;
+    }
+    .rule--gold { background:linear-gradient(180deg,transparent,var(--gold),transparent); }
+    .rule--light { background:linear-gradient(180deg,transparent,var(--accent),transparent); }
+
+    h1 {
+      font-size:clamp(2.4rem,7vw,5.6rem);
+      font-weight:400; letter-spacing:.05em; line-height:1.1;
+      text-shadow:0 2px 18px rgba(0,0,0,.22);
+    }
+    h1 em {
+      font-style:normal;
+      background:linear-gradient(135deg,var(--gold),var(--rose));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    h2 {
+      font-size:clamp(1.6rem,3.5vw,2.8rem);
+      font-weight:400; letter-spacing:.03em; line-height:1.4;
+      text-shadow:0 2px 14px rgba(0,0,0,.18);
+    }
+    h3 {
+      font-size:clamp(1.1rem,2vw,1.5rem);
+      font-weight:400; letter-spacing:.03em; line-height:1.5;
+    }
+    .lead {
+      font-size:clamp(.9rem,1.6vw,1.05rem);
+      color:rgba(245,241,249,0.95);
+      line-height:2.05;
+      margin-top:1.6rem;
+      font-weight:500;
+      text-shadow:0 1px 10px rgba(0,0,0,.18);
+    }
+    .body-text {
+      font-size:clamp(.85rem,1.4vw,.98rem);
+      color:rgba(238,234,245,0.92);
+      line-height:2.05;
+      font-weight:500;
+    }
+
+    /* ─── Badges ─── */
+    .badge {
+      display:inline-flex; align-items:center; gap:.55rem;
+      padding:.4rem 1rem; border-radius:100px;
+      border:1px solid rgba(212,168,83,0.3);
+      background:rgba(212,168,83,0.07);
+      margin-bottom:1.6rem;
+    }
+    .badge .bd { width:5px; height:5px; border-radius:50%;
+      background:linear-gradient(135deg,var(--gold),var(--rose)); }
+    .badge span {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.58rem; letter-spacing:.22em; text-transform:uppercase;
+      color:var(--gold);
+    }
+
+    /* ─── Hero ─── */
+    #hero {
+      min-height:100vh; display:flex; align-items:center;
+      padding-top:100px; text-align:center;
+    }
+    #hero .container { text-align:center; }
+    .hero-sub {
+      font-size:clamp(.88rem,1.6vw,1.05rem);
+      color:var(--text-muted); line-height:2.1; margin-top:1.8rem;
+      max-width:48ch; margin-left:auto; margin-right:auto;
+    }
+    .hero-cta {
+      display:flex; flex-wrap:wrap; gap:1rem;
+      justify-content:center; margin-top:2.8rem;
+    }
+
+    /* ─── Buttons ─── */
+    .btn {
+      display:inline-block; padding:.9rem 2.4rem;
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+      text-decoration:none; cursor:pointer; position:relative;
+      transition:color .3s;
+    }
+    .btn--primary {
+      border:1px solid var(--gold); color:var(--gold); background:transparent;
+    }
+    .btn--primary::before {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(135deg,var(--gold),var(--rose));
+      opacity:0; transition:opacity .3s;
+    }
+    .btn--primary:hover { color:var(--ink); }
+    .btn--primary:hover::before { opacity:1; }
+    .btn span { position:relative; z-index:1; }
+    .btn--ghost {
+      border:1px solid rgba(176,184,204,0.3);
+      color:var(--silver); background:transparent;
+    }
+    .btn--ghost:hover { border-color:var(--silver); color:var(--white); }
+
+    /* ─── Section backgrounds ─── */
+    .bg-deep { background:linear-gradient(180deg, rgba(68,28,76,0.18), rgba(22,10,30,0.30)); }
+    .bg-mid  { background:linear-gradient(180deg, rgba(82,34,88,0.14), rgba(24,10,30,0.26)); }
+    .bg-white { background:var(--white); color:var(--ink); }
+    .bg-white .eyebrow { color:var(--accent); }
+    .bg-white .rule { background:linear-gradient(180deg,transparent,var(--accent),transparent); }
+    .bg-white .body-text { color:#575065; }
+    .bg-white h2 { color:var(--ink); }
+    .bg-white h3 { color:var(--ink); }
+
+    /* ─── Cards ─── */
+    .card-grid {
+      display:grid; gap:1.4rem;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      margin-top:2.8rem;
+    }
+    .card {
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(212,106,173,.22);
+      border-radius:3px; padding:1.8rem 1.6rem;
+      backdrop-filter:blur(8px);
+    }
+    .card-label {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.56rem; letter-spacing:.22em; text-transform:uppercase;
+      color:var(--rose); margin-bottom:.7rem;
+    }
+    .card h3 { font-size:1rem; margin-bottom:.7rem; }
+    .card p { font-size:.88rem; color:var(--text-muted); line-height:1.75; }
+    .bg-white .card {
+      background:rgba(0,0,0,.04);
+      border-color:rgba(138,111,181,.25);
+    }
+    .bg-white .card p { color:#575065; }
+    .bg-white .card-label { color:var(--accent); }
+
+    /* ─── Persona list ─── */
+    .persona-list {
+      list-style:none; display:flex; flex-direction:column; gap:.9rem;
+      margin-top:2rem;
+    }
+    .persona-list li {
+      display:flex; align-items:flex-start; gap:.9rem;
+      font-size:clamp(1rem,1.9vw,1.14rem);
+      color:rgba(238,234,245,0.92);
+      line-height:1.95;
+      font-weight:600;
+      text-shadow:0 1px 12px rgba(0,0,0,.2);
+      padding:.6rem 0; border-bottom:1px solid rgba(212,106,173,.1);
+    }
+    .persona-list li:last-child { border-bottom:none; }
+    .persona-list li::before {
+      content:''; flex-shrink:0;
+      width:5px; height:5px; border-radius:50%;
+      background:var(--rose); margin-top:.6em;
+    }
+    .bg-white .persona-list li { color:#575065; border-bottom-color:rgba(138,111,181,.15); }
+    .bg-white .persona-list li::before { background:var(--accent); }
+    #for-you {
+      position: relative;
+      overflow: hidden;
+    }
+    #for-you::before {
+      content:'';
+      position:absolute;
+      inset: 56px 4vw 56px;
+      z-index:0;
+      border-radius:28px;
+      background:
+        linear-gradient(180deg, rgba(49,18,60,0.62), rgba(23,10,34,0.78)),
+        radial-gradient(circle at top, rgba(212,106,173,0.12), rgba(212,106,173,0) 58%);
+      border:1px solid rgba(212,106,173,0.16);
+      box-shadow:0 24px 80px rgba(7,2,14,.28);
+      backdrop-filter:blur(10px);
+    }
+    #for-you .container--narrow {
+      position: relative;
+      z-index:1;
+      padding: 0 1.2rem;
+    }
+    #for-you .lead {
+      max-width: 32ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #for-you .persona-list {
+      margin-top: 2.2rem;
+    }
+    #for-you .persona-list li {
+      border-bottom-color:rgba(212,106,173,.18);
+    }
+
+    /* ─── Timeline ─── */
+    .timeline { margin-top:2.8rem; position:relative; }
+    .timeline::before {
+      content:''; position:absolute; left:calc(1.6rem + 0.5px); top:0; bottom:0;
+      width:1px; background:linear-gradient(180deg,var(--rose),rgba(212,106,173,0.1));
+    }
+    .tl-item {
+      display:flex; gap:1.8rem; position:relative; padding-bottom:2.4rem;
+    }
+    .tl-item:last-child { padding-bottom:0; }
+    .tl-icon {
+      flex-shrink:0; width:3.2rem; height:3.2rem;
+      border-radius:50%; border:1px solid rgba(212,106,173,.4);
+      background:rgba(6,3,14,.9);
+      display:flex; align-items:center; justify-content:center;
+      position:relative; z-index:1;
+    }
+    .tl-icon span {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.6rem; letter-spacing:.1em; color:var(--rose);
+    }
+    .tl-content { padding-top:.5rem; }
+    .tl-day {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.58rem; letter-spacing:.2em; text-transform:uppercase;
+      color:var(--gold); margin-bottom:.4rem;
+    }
+    .tl-title { font-size:1rem; margin-bottom:.5rem; }
+    .tl-desc { font-size:.88rem; color:var(--text-muted); line-height:1.8; }
+
+    /* ─── Divider ─── */
+    .section-divider {
+      width:100%; height:1px;
+      background:linear-gradient(90deg,transparent,rgba(212,106,173,.25),transparent);
+      margin:0;
+    }
+
+    .apply-panel {
+      margin-top:2.8rem;
+      padding:2.2rem 1.8rem;
+      border:1px solid rgba(212,168,83,.2);
+      border-radius:4px;
+      background:linear-gradient(180deg,rgba(212,168,83,.08),rgba(255,255,255,.03));
+      text-align:center;
+    }
+    .apply-points {
+      list-style:none;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:.8rem 1.2rem;
+      margin:0 0 1.4rem;
+      padding:0;
+    }
+    .apply-points li {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.64rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--silver);
+      padding:.55rem .8rem;
+      border:1px solid rgba(176,184,204,.18);
+      border-radius:999px;
+      background:rgba(6,3,14,.35);
+    }
+    .apply-note {
+      margin-top:1rem;
+      font-size:.82rem;
+      color:var(--text-muted);
+      line-height:1.8;
+    }
+    .form-wrap {
+      margin-top:1.6rem;
+      border:1px solid rgba(212,106,173,.16);
+      border-radius:18px;
+      overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow:0 16px 44px rgba(10,4,20,.14);
+    }
+    .form-wrap iframe {
+      width:100%;
+      min-height:860px;
+      border:none;
+      display:block;
+      background:#fff;
+    }
+    .form-help {
+      margin-top:1.2rem;
+      text-align:center;
+    }
+    .form-help-copy {
+      font-size:.82rem;
+      color:var(--text-muted);
+      margin-bottom:.9rem;
+      line-height:1.8;
+    }
+
+    /* ─── Foundation bar ─── */
+    .foundation-bar {
+      display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;
+      align-items:center; margin-top:2.4rem; padding:2rem;
+      border:1px solid rgba(212,168,83,.15);
+      background:rgba(212,168,83,.04);
+    }
+    .fb-item { text-align:center; }
+    .fb-label {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.55rem; letter-spacing:.2em; text-transform:uppercase;
+      color:var(--gold); margin-bottom:.35rem;
+    }
+    .fb-value { font-size:.88rem; color:var(--silver); }
+
+    /* ─── Footer ─── */
+    footer {
+      position:relative; z-index:1;
+      background:var(--ink); padding:4rem 5vw;
+      border-top:1px solid rgba(212,106,173,.1);
+      display:flex; flex-wrap:wrap; gap:2rem;
+      justify-content:space-between; align-items:center;
+    }
+    .footer-brand {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.65rem; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--gold);
+    }
+    .footer-note {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.6rem; letter-spacing:.12em; color:rgba(176,184,204,.3);
+    }
+    .sticky-cta {
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      z-index:120;
+      width:min(92vw,560px);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      padding:.9rem 1rem;
+      border:1px solid rgba(212,168,83,.22);
+      border-radius:999px;
+      background:rgba(6,3,14,.82);
+      backdrop-filter:blur(16px);
+      box-shadow:0 18px 44px rgba(0,0,0,.28);
+    }
+    .sticky-copy {
+      min-width:0;
+    }
+    .sticky-label {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.54rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:.2rem;
+    }
+    .sticky-text {
+      font-size:.78rem;
+      color:var(--white);
+      line-height:1.5;
+    }
+    .sticky-cta .btn {
+      flex-shrink:0;
+      padding:.82rem 1.6rem;
+      font-size:.64rem;
+    }
+
+    /* ─── Orbit SVG mini ─── */
+    .orbit-mini {
+      width:56px; height:56px;
+      filter:drop-shadow(0 0 12px rgba(212,168,83,.3));
+      margin:0 auto 1.6rem;
+    }
+
+    /* ─── Scarcity strip ─── */
+    .scarcity-strip {
+      display:flex; flex-wrap:wrap; gap:0; justify-content:center;
+      margin-top:2.4rem;
+      border:1px solid rgba(212,106,173,.18);
+    }
+    .sc-item {
+      flex:1; min-width:140px; padding:1.2rem 1.6rem; text-align:center;
+      border-right:1px solid rgba(212,106,173,.18);
+    }
+    .sc-item:last-child { border-right:none; }
+    .sc-label {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.54rem; letter-spacing:.2em; text-transform:uppercase;
+      color:var(--rose); margin-bottom:.4rem;
+    }
+    .sc-value { font-size:.9rem; color:rgba(245,243,248,.75); }
+    @media (max-width: 720px) {
+      section { padding: 108px 5vw 96px; }
+      #for-you::before {
+        inset: 42px 12px 42px;
+        border-radius:22px;
+      }
+      #for-you .container--narrow {
+        padding: 0 .4rem;
+      }
+      .sticky-cta {
+        bottom:14px;
+        width:calc(100vw - 24px);
+        border-radius:20px;
+        padding:.9rem;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+      .sticky-cta .btn {
+        width:100%;
+        text-align:center;
+      }
+      footer {
+        padding-bottom:8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="pbar"></div>
+<div class="sticky-cta">
+  <div class="sticky-copy">
+    <div class="sticky-label">Early Monitor</div>
+    <p class="sticky-text">14日間の先行体験を、限定枠で受付中です。</p>
+  </div>
+  <a class="btn btn--primary" href="#apply">
+    <span>申し込む</span>
+  </a>
+</div>
+
+<!-- Nav -->
+<nav class="topnav">
+  <span class="nav-brand">AlcheaMindOrbit × OrbitCal</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#for-you">For You</a></li>
+    <li><a href="#program">Program</a></li>
+    <li><a href="#apply">申し込む</a></li>
+  </ul>
+</nav>
+
+<!-- Nebula Canvas -->
+<canvas id="nebula"></canvas>
+
+<!-- ═══════════════════════════════════
+     HERO
+═══════════════════════════════════ -->
+<section id="hero" class="bg-deep">
+  <div class="container">
+    <div class="r">
+      <div class="badge">
+        <div class="bd"></div>
+        <span>先行モニター限定 · 完全招待制</span>
+        <div class="bd"></div>
+      </div>
+    </div>
+
+    <div class="orbit-mini r d1">
+      <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="45" cy="45" r="38" stroke="#d4a853" stroke-width="0.5" opacity="0.35"/>
+        <ellipse cx="45" cy="45" rx="38" ry="12" stroke="#d46aad" stroke-width="0.55" opacity="0.6" transform="rotate(-22 45 45)"/>
+        <circle cx="45" cy="45" r="4.5" fill="#d4a853" opacity="0.85"/>
+        <circle r="2.5" fill="#f5f3f8">
+          <animateMotion dur="7s" repeatCount="indefinite">
+            <mpath href="#h-orbit"/>
+          </animateMotion>
+        </circle>
+        <ellipse id="h-orbit" cx="45" cy="45" rx="38" ry="12" transform="rotate(-22 45 45)"/>
+      </svg>
+    </div>
+
+    <h1 class="r d2">
+      星のサイクルを、<br><em>毎日の動き方に</em>変換する。
+    </h1>
+    <p class="hero-sub r d3">
+      AlcheaMindOrbit × OrbitCal ——<br>
+      天体の流れと個人の反応パターンを重ねる<span style="color:rgba(212,168,83,0.7);">Neuro Astrology</span>の伴走システム。<br>
+      先行体験モニターを、限定枠で募集しています。
+    </p>
+
+    <div class="hero-cta r d4">
+      <a class="btn btn--primary" href="#apply">
+        <span>先行体験に申し込む</span>
+      </a>
+      <a class="btn btn--ghost" href="#about">
+        <span>詳しく見る</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════
+     WHAT IS
+═══════════════════════════════════ -->
+<section id="about" class="bg-mid">
+  <div class="container">
+    <p class="eyebrow r">What Is OrbitCal</p>
+    <div class="rule r d1"></div>
+    <h2 class="r d2">セッションで受け取った言葉が、<br>毎日に戻ってくる仕組み。</h2>
+    <p class="lead r d3">
+      鑑定や気づきは、その瞬間に深く響く。でも翌日には薄れていく——<br>
+      それは記憶の問題ではなく、<strong style="color:var(--white);">日常との接続回路がない</strong>から。<br>
+      OrbitCalは、その接続回路を作るシステムです。
+    </p>
+
+    <div class="card-grid">
+      <div class="card r d1">
+        <p class="card-label">Cycle</p>
+        <h3>天体サイクルとの同期</h3>
+        <p>月・惑星の配置を毎日の動き方と照合。「今日、何に力を入れるか」が星の流れと一致する。</p>
+      </div>
+      <div class="card r d2">
+        <p class="card-label">Pattern</p>
+        <h3>個人の反応傾向を活かす</h3>
+        <p>あなた固有のチャートと反応パターンをもとに、集中しやすい時間帯・テーマを可視化。</p>
+      </div>
+      <div class="card r d3">
+        <p class="card-label">Daily</p>
+        <h3>LINEで送るだけ</h3>
+        <p>難しい操作は不要。思いついた予定や気になることをLINEで送ると、Googleカレンダーと連動したガイドが届く。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════
+     FOR YOU
+═══════════════════════════════════ -->
+<section id="for-you" class="bg-deep">
+  <div class="container--narrow">
+    <p class="eyebrow r" style="text-align:center;">For You</p>
+    <div class="rule r d1"></div>
+    <h2 class="r d2" style="text-align:center;">こんな方へ</h2>
+    <p class="lead r d3" style="text-align:center;">
+      40代以降の女性経営者・専門家で、<br>
+      次のいずれかが響いた方に届けたいと思っています。
+    </p>
+
+    <ul class="persona-list">
+      <li class="r d1">セッションや鑑定の言葉を、日常の動き方に繋げたい</li>
+      <li class="r d2">星のサイクルを、自分のスケジュールと一致させてみたい</li>
+      <li class="r d3">カレンダー管理や予定調整に、意識のリソースを取られたくない</li>
+      <li class="r d4">直感と論拠の両方を、意思決定に使いたい</li>
+      <li class="r d5">本質的な集中と、身体に沿ったリズムを取り戻したい</li>
+      <li class="r d6">感性と実務が分断されている感覚を、解消したい</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════
+     PROGRAM FLOW
+═══════════════════════════════════ -->
+<section id="program" class="bg-mid">
+  <div class="container--narrow">
+    <p class="eyebrow r" style="text-align:center;">14-Day Program</p>
+    <div class="rule rule--gold r d1"></div>
+    <h2 class="r d2" style="text-align:center;">14日間の流れ</h2>
+    <p class="lead r d3" style="text-align:center;">
+      単なるツール体験ではなく、<br>
+      軌道に乗るための14日間です。
+    </p>
+
+    <div class="timeline">
+      <div class="tl-item r d1">
+        <div class="tl-icon"><span>01</span></div>
+        <div class="tl-content">
+          <p class="tl-day">Day 1–2 &nbsp;|&nbsp; Onboarding</p>
+          <h3 class="tl-title">個別カルテの作成</h3>
+          <p class="tl-desc">ネイタルチャートをもとに、あなた固有の反応傾向・集中しやすいテーマ・エネルギーの使い方パターンを整理した個別カルテを作成します。</p>
+        </div>
+      </div>
+      <div class="tl-item r d2">
+        <div class="tl-icon"><span>02</span></div>
+        <div class="tl-content">
+          <p class="tl-day">Day 3–7 &nbsp;|&nbsp; First Cycle</p>
+          <h3 class="tl-title">最初のサイクルを体験する</h3>
+          <p class="tl-desc">LINEで予定を送り、今日の天体配置×個人カルテによるガイドを受け取る体験が始まります。Googleカレンダーとの連携も設定します。</p>
+        </div>
+      </div>
+      <div class="tl-item r d3">
+        <div class="tl-icon"><span>03</span></div>
+        <div class="tl-content">
+          <p class="tl-day">Day 8–11 &nbsp;|&nbsp; Deepening</p>
+          <h3 class="tl-title">パターンに気づく</h3>
+          <p class="tl-desc">使い続けることで、自分の集中しやすい曜日・時間帯・テーマが見えてきます。星の流れと体感のリズムが重なり始める段階です。</p>
+        </div>
+      </div>
+      <div class="tl-item r d4">
+        <div class="tl-icon"><span>04</span></div>
+        <div class="tl-content">
+          <p class="tl-day">Day 12–14 &nbsp;|&nbsp; Integration</p>
+          <h3 class="tl-title">日常への定着と振り返り</h3>
+          <p class="tl-desc">14日間を通じて気づいたことを振り返り、継続への移行をサポートします。フィードバックをもとに、カルテのアップデートも行います。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scarcity strip -->
+    <div class="scarcity-strip r d5">
+      <div class="sc-item">
+        <p class="sc-label">Period</p>
+        <p class="sc-value">14日間</p>
+      </div>
+      <div class="sc-item">
+        <p class="sc-label">Capacity</p>
+        <p class="sc-value">枠数限定</p>
+      </div>
+      <div class="sc-item">
+        <p class="sc-label">Access</p>
+        <p class="sc-value">完全招待制</p>
+      </div>
+      <div class="sc-item">
+        <p class="sc-label">Support</p>
+        <p class="sc-value">個別カルテ付き</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════
+     FOUNDATION
+═══════════════════════════════════ -->
+<section class="bg-deep">
+  <div class="container" style="text-align:center;">
+    <p class="eyebrow r" style="color:var(--gold);">The Foundation</p>
+    <div class="rule rule--gold r d1"></div>
+    <h2 class="r d2">OrbitCalは、AlcheaMindOrbit の<br>日常伴走レイヤー。</h2>
+    <p class="lead r d3" style="max-width:46ch; margin-left:auto; margin-right:auto;">
+      占星術的サイクルと神経の反応傾向を統合した個人の行動OS——<br>
+      AlcheaMindOrbitが土台にある。<br>
+      OrbitCalはその叡智を、毎日の動きに変換する接点です。
+    </p>
+
+    <div class="foundation-bar r d4">
+      <div class="fb-item">
+        <p class="fb-label">Base</p>
+        <p class="fb-value">Neuro Astrology</p>
+      </div>
+      <div style="width:1px;height:2.5rem;background:rgba(212,168,83,.2);"></div>
+      <div class="fb-item">
+        <p class="fb-label">Platform</p>
+        <p class="fb-value">AlcheaMindOrbit</p>
+      </div>
+      <div style="width:1px;height:2.5rem;background:rgba(212,168,83,.2);"></div>
+      <div class="fb-item">
+        <p class="fb-label">Daily Layer</p>
+        <p class="fb-value">OrbitCal</p>
+      </div>
+      <div style="width:1px;height:2.5rem;background:rgba(212,168,83,.2);"></div>
+      <div class="fb-item">
+        <p class="fb-label">Method</p>
+        <p class="fb-value">IFA Aroma × 西洋占星術</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════
+     APPLICATION FORM
+═══════════════════════════════════ -->
+<section id="apply" class="bg-deep">
+  <div class="container--narrow" style="text-align:center;">
+    <div class="r">
+      <div class="badge" style="justify-content:center;">
+        <div class="bd"></div>
+        <span>先行モニター申し込み</span>
+        <div class="bd"></div>
+      </div>
+    </div>
+    <div class="rule r d1"></div>
+    <h2 class="r d2">先行体験に<br>申し込む</h2>
+    <p class="lead r d3" style="max-width:38ch; margin-left:auto; margin-right:auto;">
+      まずは外部フォームからお申し込みください。<br>
+      スマホでもそのまま入力できる公開用導線にしています。
+    </p>
+
+    <div class="apply-panel r d4">
+      <ul class="apply-points">
+        <li>所要3分</li>
+        <li>先行モニター限定</li>
+        <li>個別カルテ付き</li>
+      </ul>
+      <p class="apply-note">
+        こちらのページ内でそのままお申し込みいただけます。
+      </p>
+    </div>
+
+    <div class="form-wrap r d4">
+      <iframe
+        src="https://bijoux-graces.com/mind-orbit-%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0/"
+        title="先行体験 申し込みフォーム"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <div class="form-help r d4">
+      <p class="form-help-copy">そのフォームが見れない方は、こちらへ</p>
+      <a class="btn btn--primary"
+        href="https://bijoux-graces.com/mind-orbit-%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0/"
+        target="_blank" rel="noreferrer">
+        <span>申し込みフォームを開く</span>
+      </a>
+    </div>
+
+    <p class="body-text r" style="margin-top:1.6rem; font-size:.78rem; opacity:.5;">
+      ご記入いただいた情報はモニター選考のみに使用します。
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     FOOTER
+═══════════════════════════════════ -->
+<footer>
+  <span class="footer-brand">AlcheaMindOrbit × OrbitCal</span>
+  <span class="footer-note">Neuro Astrology &nbsp;|&nbsp; Early Monitor Landing Page</span>
+</footer>
+
+<script>
+/* ─── Nebula Canvas ─── */
+(function(){
+  const cv = document.getElementById('nebula');
+  const cx = cv.getContext('2d');
+  let W,H,stars=[],t=0;
+  const clouds=[
+    {rx:.25,ry:.35,rw:.55,rh:.42,col:'#6b12aa',a:.18},
+    {rx:.55,ry:.20,rw:.48,rh:.38,col:'#c0208a',a:.14},
+    {rx:.70,ry:.55,rw:.40,rh:.32,col:'#a0108a',a:.12},
+    {rx:.15,ry:.65,rw:.38,rh:.30,col:'#3a10b0',a:.13},
+    {rx:.45,ry:.45,rw:.35,rh:.28,col:'#e040c8',a:.09},
+    {rx:.80,ry:.80,rw:.32,rh:.26,col:'#8020c0',a:.10},
+  ];
+  function resize(){ W=cv.width=window.innerWidth; H=cv.height=window.innerHeight; }
+  function mkStar(){ return {x:Math.random()*W,y:Math.random()*H,
+    r:Math.random()*1.2+.15,a:Math.random(),da:(Math.random()-.5)*.003,
+    dx:(Math.random()-.5)*.07,dy:(Math.random()-.5)*.07,
+    hue:Math.random()<.15?300:(Math.random()<.5?220:0)}; }
+  function init(n=300){ stars=[]; for(let i=0;i<n;i++) stars.push(mkStar()); }
+  function draw(ts){
+    t=ts||0;
+    cx.fillStyle='#170c1f'; cx.fillRect(0,0,W,H);
+    clouds.forEach(c=>{
+      const px=c.rx*W, py=c.ry*H,
+            rx=c.rw*W, ry=c.rh*H,
+            pulse=1+Math.sin(t*.0004+c.rx*10)*.06,
+            maxR=Math.max(rx,ry)*pulse,
+            sx=rx/Math.max(rx,ry), sy=ry/Math.max(rx,ry),
+            r=parseInt(c.col.slice(1,3),16),
+            g=parseInt(c.col.slice(3,5),16),
+            b=parseInt(c.col.slice(5,7),16);
+      cx.save();
+      cx.translate(px,py);
+      cx.scale(sx,sy);
+      const gr=cx.createRadialGradient(0,0,0,0,0,maxR);
+      gr.addColorStop(0,`rgba(${r},${g},${b},${c.a*.72})`);
+      gr.addColorStop(.45,`rgba(${r},${g},${b},${c.a*.32})`);
+      gr.addColorStop(1,`rgba(${r},${g},${b},0)`);
+      cx.fillStyle=gr;
+      cx.beginPath();
+      cx.arc(0,0,maxR,0,Math.PI*2);
+      cx.fill(); cx.restore();
+    });
+    // streak
+    const sg=cx.createLinearGradient(W*.15,H*.28,W*.88,H*.7);
+    sg.addColorStop(0,`rgba(180,60,160,.08)`);
+    sg.addColorStop(.5,`rgba(220,70,190,.11)`);
+    sg.addColorStop(1,`rgba(110,35,170,.04)`);
+    cx.beginPath();
+    cx.moveTo(W*.12,H*.25); cx.bezierCurveTo(W*.38,H*.16,W*.64,H*.58,W*.92,H*.72);
+    cx.strokeStyle=sg; cx.lineWidth=H*.16; cx.stroke();
+    stars.forEach(s=>{
+      s.x+=s.dx; s.y+=s.dy; s.a+=s.da;
+      if(s.a<.05) s.da=Math.abs(s.da);
+      if(s.a>1)   s.da=-Math.abs(s.da);
+      if(s.x<0) s.x=W; if(s.x>W) s.x=0;
+      if(s.y<0) s.y=H; if(s.y>H) s.y=0;
+      const col=s.hue===300?`rgba(230,160,230,${s.a*.6})`:
+                s.hue===220?`rgba(180,190,240,${s.a*.58})`:`rgba(240,235,225,${s.a*.55})`;
+      cx.beginPath(); cx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      cx.fillStyle=col; cx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>{resize();init();});
+  resize(); init(); requestAnimationFrame(draw);
+})();
+
+/* ─── Reveal ─── */
+(function(){
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('v'); });
+  },{threshold:.1});
+  document.querySelectorAll('.r').forEach(el=>io.observe(el));
+})();
+
+/* ─── Progress ─── */
+window.addEventListener('scroll',()=>{
+  const tot=document.body.scrollHeight-window.innerHeight;
+  document.getElementById('pbar').style.width=(window.scrollY/tot*100)+'%';
+});
+</script>
+</body>
+</html>
