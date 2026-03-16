@@ -406,6 +406,52 @@
       margin-bottom:.9rem;
       line-height:1.8;
     }
+    .detail-qr {
+      margin-top:2.2rem;
+      padding:2rem 1.6rem 2.2rem;
+      border:1px solid rgba(212,168,83,.16);
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+      box-shadow:0 16px 44px rgba(10,4,20,.12);
+      text-align:center;
+    }
+    .detail-qr-label {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.62rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--gold);
+    }
+    .detail-qr-title {
+      margin-top:.8rem;
+      font-size:1.32rem;
+      color:var(--white);
+    }
+    .detail-qr-copy {
+      margin-top:.8rem;
+      font-size:.9rem;
+      line-height:1.85;
+      color:var(--text-muted);
+    }
+    .detail-qr img {
+      width:220px;
+      max-width:58vw;
+      height:auto;
+      margin:1.3rem auto 0;
+      display:block;
+      border-radius:18px;
+      background:#fff;
+      padding:10px;
+      box-shadow:0 14px 36px rgba(0,0,0,.18);
+    }
+    .detail-qr-url {
+      margin-top:1rem;
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:.72rem;
+      letter-spacing:.08em;
+      color:rgba(245,243,248,0.58);
+      word-break:break-all;
+    }
 
     /* ─── Foundation bar ─── */
     .foundation-bar {
@@ -795,8 +841,8 @@
     <div class="rule r d1"></div>
     <h2 class="r d2">先行体験に<br>申し込む</h2>
     <p class="lead r d3" style="max-width:38ch; margin-left:auto; margin-right:auto;">
-      まずは外部フォームからお申し込みください。<br>
-      スマホでもそのまま入力できる公開用導線にしています。
+      このページ内のフォームからお申し込みいただけます。<br>
+      スマホでは下のQRから詳細ページへ移動して見ることもできます。
     </p>
 
     <div class="apply-panel r d4">
@@ -825,6 +871,17 @@
         target="_blank" rel="noreferrer">
         <span>申し込みフォームを開く</span>
       </a>
+    </div>
+
+    <div class="detail-qr r d4">
+      <p class="detail-qr-label">Details</p>
+      <p class="detail-qr-title">詳細はこちら</p>
+      <p class="detail-qr-copy">
+        独自ドメインのLPへ直接アクセスできます。<br>
+        スマホで読み取って、いつでも内容を見返せます。
+      </p>
+      <img src="./OrbitCal_LP_QR_orbitcal_domain.png" alt="OrbitCal LP QR code" />
+      <p class="detail-qr-url">https://orbitcal.bijoux-graces.com/</p>
     </div>
 
     <p class="body-text r" style="margin-top:1.6rem; font-size:.78rem; opacity:.5;">
